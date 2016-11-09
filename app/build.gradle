@@ -1,0 +1,43 @@
+apply plugin: 'com.android.application'
+
+//final SDK_VERSION = 23
+//final TOOLS_VERSION = '23.0.3'
+//final SUPPORT_LIBRARY_VERSION = '23.4.0'
+
+//final SDK_VERSION = 24
+//final TOOLS_VERSION = '24.0.3'
+//final SUPPORT_LIBRARY_VERSION = '24.2.1'
+
+final SDK_VERSION = 25
+final TOOLS_VERSION = '25'
+final SUPPORT_LIBRARY_VERSION = '25.0.0'
+
+android {
+    compileSdkVersion SDK_VERSION
+    buildToolsVersion "${TOOLS_VERSION}"
+    defaultConfig {
+        applicationId "com.espressorotation"
+        minSdkVersion 16
+        targetSdkVersion SDK_VERSION
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile "com.android.support:appcompat-v7:${SUPPORT_LIBRARY_VERSION}"
+    compile "com.android.support:support-v4:${SUPPORT_LIBRARY_VERSION}"
+    compile "com.android.support:design:${SUPPORT_LIBRARY_VERSION}"
+    testCompile 'junit:junit:4.12'
+}
